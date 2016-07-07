@@ -28,9 +28,19 @@
         }
 
         function filterTasks(tasks, selectedStatus, selectedPriorities) {
-            var filteredTasks = [];
+
+            var filteredTasks = tasks;
             if(selectedStatus) {
-                filteredTasks = filterFilter(tasks,selectedStatus);
+                filteredTasks = filterFilter(filteredTasks,selectedStatus);
+            }
+            if(selectedPriorities.length) {
+                var priorities=[];
+                angular.forEach(selectedPriorities, function (val, ind){
+                    priorities.push(val.value);
+                });
+                filteredTasks = filterFilter(filteredTasks,function (value, index , filteredTasks) {
+                   return priorities.indexOf(value.priority) >= 0;
+                });
             }
             return filteredTasks;
         }

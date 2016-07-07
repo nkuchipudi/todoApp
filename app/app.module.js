@@ -5,6 +5,7 @@
     'ui.router',
     'pascalprecht.translate',
     'ui.select',
+    'ngSanitize',
     'app.dashboard'
   ]);
 }());

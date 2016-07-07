@@ -3,6 +3,7 @@
   "label.description":"Description",
   "label.status":"Status",
   "label.title":"Title",
+  "label.priority":"Priority",
   "label.start.date":"End date",
   "label.end.date":"Start date"
 }

@@ -2,16 +2,26 @@
 
     <div class="row margin-bottom-10">
         <div class="col-sm-4">
-            <ui-select ng-model="dc.selectedStatus.value" ng-change="dc.filterTasks()">
-                <ui-select-match>
+            <ui-select ng-model="dc.selectedStatus.value" theme="bootstrap"
+                       close-on-select="true">
+                <ui-select-match placeholder="Select status" allow-clear="true">
                     <span ng-bind="$select.selected.name"></span>
+                    <!--<button class="clear" ng-click="dc.clear($event)">X</button>-->
                 </ui-select-match>
                 <ui-select-choices repeat="status in (dc.statuses | filter: $select.search) track by status.name">
                     <span ng-bind="status.name"></span>
                 </ui-select-choices>
             </ui-select>
         </div>
-        <div></div>
+        <div class="col-sm-4">
+            <ui-select multiple ng-model="dc.selectedPriorities" theme="bootstrap" sortable="true"
+                       ng-change="dc.filterTasks()" close-on-select="false">
+                <ui-select-match placeholder="Select priorities...">{{$item.name}}</ui-select-match>
+                <ui-select-choices repeat="priority in dc.priorities | filter: $select.search">
+                    <div ng-bind-html="priority.name | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm-4" ng-repeat = "task in dc.tasks">
@@ -34,6 +44,12 @@
                             <label class="col-sm-4 control-label no-padding " ng-bind="'label.status' | translate"></label>
                             <div class="col-sm-8">
                                 <p class="form-control-static" ng-bind="task.status"></p>
+                            </div>
+                        </div>
+                        <div class="form-group row margin-bottom-0">
+                            <label class="col-sm-4 control-label no-padding " ng-bind="'label.priority' | translate"></label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static" ng-bind="task.priority"></p>
                             </div>
                         </div>
                         <div class="form-group row margin-bottom-0">
