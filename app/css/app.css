@@ -28,3 +28,34 @@
   content: "";
   padding: 0;
 }
+.todo-header {
+  background-color:lightcyan;
+  margin-bottom: 10px;
+}
+.todo-footer {
+  background-color: lightcyan;
+  margin-top:10px;
+}
+
+.task-box {
+  border: 1px solid #abc;
+  margin-bottom:15px;
+  padding:15px;
+}
+
+.margin-bottom-0{
+  margin-bottom:0;
+}
+
+.no-padding {
+  padding:0;
+}
+
+.task-title {
+ font-size: 20px;
+  border-bottom:1px solid #abc;
+}
+
+.margin-bottom-10 {
+  margin-bottom:10px;
+}

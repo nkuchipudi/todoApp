@@ -3,20 +3,25 @@
 // Declare app level module which depends on views, and components
     angular.
     module('todoApp').
-    config(['$stateProvider', '$urlRouterProvider', configuration]);
+    config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$translateProvider', configuration]);
 
-    function configuration($stateProvider, $urlRouterProvider) {
-        //$locationProvider.hashPrefix('!');
-        //$routeProvider.otherwise({redirectTo: '/view1'});
+    function configuration($stateProvider, $urlRouterProvider, $locationProvider, $translateProvider) {
 
         // For any unmatched url, redirect to /state1
-        $urlRouterProvider.otherwise("/dashboard");
 
         $stateProvider.state('dashboard', {
             url: "/dashboard",
             templateUrl: "todo/dashboard/dashboard.html",
             controller: 'DashboardController',
             controllerAs:'dc'
-        })
+        });
+        $urlRouterProvider.otherwise("/dashboard");
+
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'messages-',
+            suffix: '.json'
+        });
+        $translateProvider.preferredLanguage('en');
+        //$locationProvider.html5Mode(true);
     }
 }());
