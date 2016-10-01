@@ -6,9 +6,9 @@
         module('app.dashboard')
         .controller('DashboardController',DashboardController);
 
-    DashboardController.$inject=['DashboardService','$rootScope','filterFilter','$scope'];
+    DashboardController.$inject=['DashboardService','$rootScope','filterFilter','$scope', '$uibModal'];
 
-    function DashboardController(DashboardService,$rootScope,filterFilter, $scope){
+    function DashboardController(DashboardService,$rootScope,filterFilter, $scope, $uibModal){
         var dc = this;
         dc.tasks = [];
         dc.selectedStatus = {};
@@ -16,6 +16,7 @@
         dc.loadTasks = loadTasks;
         dc.filterTasks = filterTasks;
         dc.clear = clear;
+        dc.deleteTask = deleteTask;
         dc.statuses = [
             {name:"Opened",value:"OPENED"},
             {name:"Invalid",value:"INVALID"},
@@ -47,8 +48,27 @@
                 $rootScope.TASKS = response.data;
                 dc.tasks = response.data;
             },function (errResponse){
-                console.log("Something gone wrong while loading tasks"+errResponse);
+                console.log("Something went wrong while loading tasks"+errResponse);
             });
         }
+
+        function deleteTask( task) {
+            var modalInstance = $uibModal.open({
+                animation: false,
+                //template:"Somthing to show",
+                templateUrl: 'partials/modalTemplate.html',
+                controller: function ($scope, $uibModalInstance ) {
+                    $scope.ok = function () {
+                        dc.tasks = DashboardService.deleteTasks(dc.tasks, task);
+                        console.log("some thing");
+                        $uibModalInstance.close();
+                    };
+
+                    $scope.cancel = function () {
+                        $uibModalInstance.dismiss('cancel');
+                    };
+                }
+            });
+       }
     }
 }());

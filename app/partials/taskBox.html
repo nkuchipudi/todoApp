@@ -1,0 +1,44 @@
+<div class="col-sm-4" ng-repeat = "task in tc.tasks">
+    <div class="task-box">
+        <div class="row">
+            <div class="col-sm-8 task-title" ng-bind="task.name"></div>
+            <div class="col-sm-4">
+                <a href="javascript:void(0)" ng-click="tc.deleteTask({'task': task})">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </div>
+        </div>
+        <div>
+            <form class="form-horizontal">
+                <div class="form-group row margin-bottom-0">
+                    <label class="col-sm-4 control-label no-padding ">Description</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static" ng-bind="task.description"></p>
+                    </div>
+                </div>
+                <div class="form-group row margin-bottom-0">
+                    <label class="col-sm-4 control-label no-padding " ng-bind="'label.status' | translate"></label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static" ng-bind="task.status | titleCase"></p>
+                    </div>
+                </div>
+                <div class="form-group row margin-bottom-0">
+                    <label class="col-sm-4 control-label no-padding " ng-bind="'label.priority' | translate"></label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static" ng-bind="task.priority | titleCase"></p>
+                    </div>
+                </div>
+                <div class="form-group row margin-bottom-0">
+                    <label class="col-sm-3 control-label no-padding" ng-bind="'label.start.date'| translate"></label>
+                    <div class="col-sm-3 padding-right-0">
+                        <p class="form-control-static" ng-bind="task.start_date"></p>
+                    </div>
+                    <label class="col-sm-3 control-label no-padding" ng-bind="'label.end.date' | translate"></label>
+                    <div class="col-sm-3 padding-right-0">
+                        <p class="form-control-static" ng-bind="task.end_date"></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

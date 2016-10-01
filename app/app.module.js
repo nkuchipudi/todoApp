@@ -6,6 +6,9 @@
     'pascalprecht.translate',
     'ui.select',
     'ngSanitize',
+    'ui.bootstrap',
+    'app.filters',
+    'app.components',
     'app.dashboard'
   ]);
 }());

@@ -11,7 +11,8 @@
     function DashboardService($http, $q, $filter, filterFilter) {
         var service = {
             getTasks:getTasks,
-            filterTasks:filterTasks
+            filterTasks:filterTasks,
+            deleteTasks:deleteTasks
         };
         return service;
 
@@ -43,6 +44,16 @@
                 });
             }
             return filteredTasks;
+        }
+
+        function deleteTasks(tasks ,deletedTask) {
+           angular.forEach(tasks,function (eachTask, index){
+             if(eachTask.name === deletedTask.name) {
+                 tasks.splice(index,1);
+                 return tasks;
+             }
+           });
+            return tasks;
         }
     }
 }());
